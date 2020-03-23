@@ -3,7 +3,26 @@
     <el-main class="fm2-main">
       <el-container>
         <el-aside width="250px">
-          <div class="components-list">
+          <div class="components-list">   
+            
+            <template v-if="layoutFields.length">
+              <div class="widget-cate">{{$t('fm.components.layout.title')}}</div>
+              <draggable tag="ul" :list="layoutComponents" 
+                v-bind="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
+                @end="handleMoveEnd"
+                @start="handleMoveStart"
+                :move="handleMove"
+              >
+                
+                <li v-if="layoutFields.indexOf(item.type) >=0" class="form-edit-widget-label no-put" v-for="(item, index) in layoutComponents" :key="index">
+                  <a>
+                    <i class="icon iconfont" :class="item.icon"></i>
+                    <span>{{item.name}}</span>
+                  </a>
+                </li>
+              </draggable>
+            </template>
+
             <template v-if="basicFields.length">
               <div class="widget-cate">{{$t('fm.components.basic.title')}}</div>
               <draggable tag="ul" :list="basicComponents" 
@@ -32,25 +51,6 @@
               >
                 
                 <li v-if="advanceFields.indexOf(item.type) >= 0" class="form-edit-widget-label" :class="{'no-put': item.type == 'table'}" v-for="(item, index) in advanceComponents" :key="index">
-                  <a>
-                    <i class="icon iconfont" :class="item.icon"></i>
-                    <span>{{item.name}}</span>
-                  </a>
-                </li>
-              </draggable>
-            </template>
-
-            
-            <template v-if="layoutFields.length">
-              <div class="widget-cate">{{$t('fm.components.layout.title')}}</div>
-              <draggable tag="ul" :list="layoutComponents" 
-                v-bind="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
-                @end="handleMoveEnd"
-                @start="handleMoveStart"
-                :move="handleMove"
-              >
-                
-                <li v-if="layoutFields.indexOf(item.type) >=0" class="form-edit-widget-label no-put" v-for="(item, index) in layoutComponents" :key="index">
                   <a>
                     <i class="icon iconfont" :class="item.icon"></i>
                     <span>{{item.name}}</span>
@@ -160,7 +160,6 @@
         </cus-dialog>
       </el-container>
     </el-main>
-    <el-footer height="30px" style="font-weight: 600;">Powered by <a target="_blank" href="https://github.com/GavinZhuLei/vue-form-making">vue-form-making</a></el-footer>
   </el-container>
   
 </template>
@@ -211,11 +210,11 @@ export default {
     },
     basicFields: {
       type: Array,
-      default: () => ['input', 'textarea', 'number', 'radio', 'checkbox', 'time', 'date', 'rate', 'color', 'select', 'switch', 'slider', 'text']
+      default: () => ['input', 'textarea', 'number', 'radio', 'checkbox', 'time', 'date', 'rate', 'color', 'select', 'switch', 'slider', 'imgupload', 'fileupload', 'cascader']
     },
     advanceFields: {
       type: Array,
-      default: () => ['blank', 'imgupload', 'editor', 'cascader']
+      default: () => []
     },
     layoutFields: {
       type: Array,

@@ -187,3 +187,7 @@
   content: "\e65f";
 }
 
+.icon-file:before {
+  content: "\e617";
+}
+

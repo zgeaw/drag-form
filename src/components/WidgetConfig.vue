@@ -41,7 +41,7 @@
       <el-form-item :label="$t('fm.config.widget.step')" v-if="Object.keys(data.options).indexOf('step')>=0">
         <el-input-number v-model="data.options.step" :min="0" :max="100" :step="1"></el-input-number>
       </el-form-item>
-      <el-form-item :label="$t('fm.config.widget.multiple')" v-if="data.type=='select' || data.type=='imgupload'">
+      <el-form-item :label="$t('fm.config.widget.multiple')" v-if="data.type=='select' || data.type=='imgupload' || data.type=='fileupload'">
         <el-switch v-model="data.options.multiple" @change="handleSelectMuliple"></el-switch>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.filterable')" v-if="data.type=='select'">
@@ -245,6 +245,18 @@
         </template>
         <template v-else>
           <el-form-item :label="$t('fm.config.widget.imageAction')" :required="true">
+            <el-input v-model="data.options.action"></el-input>
+          </el-form-item>
+        </template>
+      </template>     
+
+      <template v-if="data.type=='fileupload'">
+        
+        <el-form-item :label="$t('fm.config.widget.limit')">
+          <el-input type="number" v-model.number="data.options.length"></el-input>
+        </el-form-item>
+        <template>
+          <el-form-item :label="$t('fm.config.widget.action')" :required="true">
             <el-input v-model="data.options.action"></el-input>
           </el-form-item>
         </template>

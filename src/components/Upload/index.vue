@@ -2,42 +2,65 @@
   <div class="fm-uplaod-container"
     :id="uploadId"
   >
-    <draggable class="drag-img-list"
-      v-model="fileList"
-      v-bind="{group: uploadId, ghostClass: 'ghost', animation: 200}"
-      :no-transition-on-drag="true"
-    >
-      <div 
-        :id="item.key"
-        :style="{width: width+'px', height: height+'px'}"
-        :class="{uploading: item.status=='uploading', 'is-success': item.status=='success', 'is-diabled': disabled}"
-        class="upload-file" v-for="(item) in fileList" :key="item.key">
-        <img :src="item.url" />
+    <!-- 文件上传 start -->
+    <template v-if="isFile">
+      <el-upload
+        class="upload-demo"
+        :action="action"
+        :on-preview="handlePreviewFile"
+        :before-remove="handleRemove"
+        multiple
+        :limit="length"
+        :disabled="disabled"
+        :on-success="uploadFile"
+        :on-change="changeUploadFile"
+        :file-list="fileList">
+        <el-button size="small" :disabled="disabled" type="primary">点击上传</el-button>
+      </el-upload>
+    </template>
+    <!-- 文件上传 end -->
 
-        <el-progress v-if="item.status=='uploading'" :width="miniWidth*0.9" class="upload-progress" type="circle" :percentage="item.percent"></el-progress>
+    <!-- 图片上传 start -->
+    <template v-else>
+      <draggable class="drag-img-list"
+        v-model="fileList"
+        v-bind="{group: uploadId, ghostClass: 'ghost', animation: 200}"
+        :no-transition-on-drag="true"
+      >
+        <div 
+          :id="item.key"
+          :style="{width: width+'px', height: height+'px'}"
+          :class="{uploading: item.status=='uploading', 'is-success': item.status=='success', 'is-diabled': disabled}"
+          class="upload-file" v-for="(item) in fileList" :key="item.key">
+          <img :src="item.url" />
 
-        <label class="item-status" v-if="item.status=='success'">
-          <i class="el-icon-upload-success el-icon-check"></i>
-        </label>
+          <el-progress v-if="item.status=='uploading'" :width="miniWidth*0.9" class="upload-progress" type="circle" :percentage="item.percent"></el-progress>
 
-        <div class="uplaod-action" :style="{height: miniWidth / 4 + 'px'}" v-if="!disabled">
-          <i class="iconfont icon-tupianyulan" :title="$t('fm.upload.preview')" @click="handlePreviewFile(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
-          <i v-if="isEdit" class="iconfont icon-sync1" :title="$t('fm.upload.edit')" @click="handleEdit(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
-          <i v-if="isDelete && fileList.length > min" class="iconfont icon-delete" :title="$t('fm.upload.delete')" @click="handleRemove(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
+          <label class="item-status" v-if="item.status=='success'">
+            <i class="el-icon-upload-success el-icon-check"></i>
+          </label>
+
+          <div class="uplaod-action" :style="{height: miniWidth / 4 + 'px'}" v-if="!disabled">
+            <i class="iconfont icon-tupianyulan" :title="$t('fm.upload.preview')" @click="handlePreviewFile(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
+            <i v-if="isEdit" class="iconfont icon-sync1" :title="$t('fm.upload.edit')" @click="handleEdit(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
+            <i v-if="isDelete && fileList.length > min" class="iconfont icon-delete" :title="$t('fm.upload.delete')" @click="handleRemove(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
+          </div>
         </div>
-      </div>
-    </draggable>
+      </draggable>
 
-    <div class="el-upload el-upload--picture-card"
-      :class="{'is-disabled': disabled}"
-      v-show="(!isQiniu || (isQiniu && token)) && fileList.length < length"
-      :style="{width: width+'px', height: height+'px'}"
-      @click.self="handleAdd"
-    >
-      <i class="el-icon-plus" @click.self="handleAdd" :style="{fontSize:miniWidth/4+'px',marginTop: (-miniWidth/8)+'px', marginLeft: (-miniWidth/8)+'px'}"></i>
-      <input accept="image/*" v-if="multiple"  multiple ref="uploadInput" @change="handleChange" type="file" :style="{width: 0, height: 0}" name="file" class="el-upload__input upload-input">
-      <input accept="image/*" v-else ref="uploadInput" @change="handleChange" type="file" :style="{width:0, height: 0}" name="file" class="el-upload__input upload-input">
-    </div>
+      <div class="el-upload el-upload--picture-card"
+        :class="{'is-disabled': disabled}"
+        v-show="(!isQiniu || (isQiniu && token)) && fileList.length < length"
+        :style="{width: width+'px', height: height+'px'}"
+        @click.self="handleAdd"
+      >
+        <i class="el-icon-plus" @click.self="handleAdd" :style="{fontSize:miniWidth/4+'px',marginTop: (-miniWidth/8)+'px', marginLeft: (-miniWidth/8)+'px'}"></i>
+        <input accept="image/*" v-if="multiple"  multiple ref="uploadInput" @change="handleChange" type="file" :style="{width: 0, height: 0}" name="file" class="el-upload__input upload-input">
+        <input accept="image/*" v-else ref="uploadInput" @change="handleChange" type="file" :style="{width:0, height: 0}" name="file" class="el-upload__input upload-input">   
+      </div>
+    </template> 
+    <!-- 图片上传 end --> 
+
   </div>
 </template>
 
@@ -106,6 +129,11 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    // 是否是文件上传
+    isFile: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -137,21 +165,44 @@ export default {
     this.$emit('input', this.fileList)
   },
   methods: {
-    handleChange () {
-      console.log(this.$refs.uploadInput.files)
-      const files = this.$refs.uploadInput.files
-      
+    // 监听文件改变
+    changeUploadFile(file, fileList){
+      const key = (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999)   
+      let list = []; 
+      fileList.map(item => {
+        list.push({
+          ...item,
+          key
+        })
+      })
+      this.fileList = list;
+    },
+    // 文件上传成功
+    uploadFile(res, file, fileList){
+      const key = (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999)   
+      let list = []; 
+      fileList.map(item => {
+        list.push({
+          ...item,
+          key
+        })
+      })
+      this.fileList = list;
+    },
+    // 图片上传
+    handleChange (file, fileList) {
+      const key = (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999)  
+      const files = this.$refs.uploadInput.files      
       for (let i = 0; i < files.length; i++) {
-        const file = files[i]
+        const file = this.isFile ? files[i].raw : files[i]
         const reader = new FileReader()
-        const key = (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999)
         reader.readAsDataURL(file)
         reader.onload = () => {
           if (this.editIndex >= 0) {
 
             this.$set(this.fileList, this.editIndex, {
               key,
-              url: reader.result,
+              url: reader.name,
               percent: 0,
               status: 'uploading'
             })
@@ -160,7 +211,7 @@ export default {
           } else {
             this.fileList.push({
               key,
-              url: reader.result,
+              url: reader.name,
               percent: 0,
               status: 'uploading'
             })
@@ -174,7 +225,7 @@ export default {
             }
           })
         }
-      }
+      } 
       this.$refs.uploadInput.value = []
     }, 
     uplaodAction (res, file, key) {
@@ -261,7 +312,7 @@ export default {
         }
       })
     },
-    handleRemove (key) {
+    handleRemove (key, fileList) {
       this.fileList.splice(this.fileList.findIndex(item => item.key === key), 1)
     },
     handleEdit (key) {
@@ -295,7 +346,8 @@ export default {
     'fileList': {
       deep: true,
       handler (val) {
-        // this.$emit('input', this.fileList)
+        console.log(2222233, val )
+        this.$emit('input', this.fileList)
       }
     }
   }

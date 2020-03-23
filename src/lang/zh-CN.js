@@ -26,13 +26,13 @@ export default {
         divider: '分割线'
       },
       basic: {
-        title: '基础字段',
+        title: '基础模块',
       },
       advance: {
-        title: '高级字段',
+        title: '高级模块',
       },
       layout: {
-        title: '布局字段',
+        title: '布局模块',
       }
     },
     description: {

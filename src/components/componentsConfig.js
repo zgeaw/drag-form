@@ -1,3 +1,4 @@
+// 基础字段
 export const basicComponents = [
   {
     type: 'input',
@@ -223,9 +224,75 @@ export const basicComponents = [
       defaultValue: 'This is a text',
       customClass: '',
     }
+  },
+  {
+    type: 'imgupload',
+    icon: 'icon-tupian',
+    options: {
+      defaultValue: [],
+      size: {
+        width: 100,
+        height: 100,
+      },
+      width: '',
+      tokenFunc: 'funcGetToken',
+      token: '',
+      domain: 'http://pfp81ptt6.bkt.clouddn.com/',
+      disabled: false,
+      length: 8,
+      multiple: false,
+      isQiniu: false,
+      isDelete: false,
+      min: 0,
+      isEdit: false,
+      action: 'https://jsonplaceholder.typicode.com/photos/'
+    }
+  },
+  {
+    type: 'fileupload',
+    icon: 'icon-file',
+    options: {
+      defaultValue: [],
+      size: {
+        //width: 100,
+        //height: 100,
+      },
+      //width: '',
+      tokenFunc: 'funcGetToken',
+      token: '',
+      domain: 'http://pfp81ptt6.bkt.clouddn.com/',
+      disabled: false,
+      length: 8,
+      multiple: false,
+      isQiniu: false,
+      isDelete: false,
+      //min: 0,
+      isEdit: false,
+      action: 'https://jsonplaceholder.typicode.com/photos/'
+    }
+  },
+  {
+    type: 'cascader',
+    icon: 'icon-jilianxuanze',
+    options: {
+      defaultValue: [],
+      width: '',
+      placeholder: '',
+      disabled: false,
+      clearable: false,
+      remote: true,
+      remoteOptions: [],
+      props: {
+        value: 'value',
+        label: 'label',
+        children: 'children'
+      },
+      remoteFunc: ''
+    }
   }
 ]
 
+// 高级字段
 export const advanceComponents = [
   {
     type: 'blank',
@@ -286,6 +353,7 @@ export const advanceComponents = [
   }
 ]
 
+// 字段布局
 export const layoutComponents = [
   {
     type: 'grid',

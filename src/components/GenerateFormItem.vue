@@ -175,6 +175,28 @@
       >
       </fm-upload>
     </template>
+    
+
+    <template v-if="widget.type=='fileupload'">
+      <fm-upload
+        v-model="dataModel"
+        :disabled="widget.options.disabled"
+        :style="{'width': widget.options.width}"
+        :width="widget.options.size.width"
+        :height="widget.options.size.height"
+        :token="widget.options.token"
+        :domain="widget.options.domain"
+        :multiple="widget.options.multiple"
+        :length="widget.options.length"
+        :is-qiniu="widget.options.isQiniu"
+        :is-delete="widget.options.isDelete"
+        :min="widget.options.min"
+        :is-edit="widget.options.isEdit"
+        :action="widget.options.action"
+        isFile
+      >
+      </fm-upload>
+    </template>
 
     <template v-if="widget.type == 'editor'">
       <vue-editor
@@ -241,6 +263,7 @@ export default {
     dataModel: {
       deep: true,
       handler (val) {
+        console.log('捕捉到数据了', val)
         this.models[this.widget.model] = val
         this.$emit('update:models', {
           ...this.models,
