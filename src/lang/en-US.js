@@ -33,6 +33,11 @@ export default {
       },
       layout: {
         title: 'Layout',
+      },
+      halfLine: {
+        title: '布局',
+        inline: '半行',
+        block: '整行'
       }
     },
     description: {

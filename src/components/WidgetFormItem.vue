@@ -1,7 +1,7 @@
 <template>
   <el-form-item class="widget-view "
       v-if="element && element.key" 
-      :class="{active: selectWidget.key == element.key, 'is_req': element.options.required}"
+      :class="{active: selectWidget.key == element.key, 'is_req': element.options.required, 'half-line': element.options.halfLine}"
       :label="element.name"
       @click.native.stop="handleSelectWidget(index)"
     >

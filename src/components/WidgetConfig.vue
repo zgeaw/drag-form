@@ -1,8 +1,14 @@
 <template>
   <div v-if="show">
     <el-form label-position="top">
-      <el-form-item :label="$t('fm.config.widget.model')" v-if="data.type!='grid'">
+      <!-- <el-form-item :label="$t('fm.config.widget.model')" v-if="data.type!='grid'">
         <el-input v-model="data.model"></el-input>
+      </el-form-item> -->
+      <el-form-item :label="$t('fm.components.halfLine.title')">
+        <el-radio-group v-model="data.options.halfLine">
+          <el-radio-button :label="true">{{$t('fm.components.halfLine.inline')}}</el-radio-button>
+          <el-radio-button :label="false">{{$t('fm.components.halfLine.block')}}</el-radio-button>
+        </el-radio-group>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.name')" v-if="data.type!='grid'">
         <el-input v-model="data.name"></el-input>
@@ -15,7 +21,7 @@
         <el-input v-model="data.options.height"></el-input>
       </el-form-item>
 
-      <el-form-item :label="$t('fm.config.widget.size')" v-if="Object.keys(data.options).indexOf('size')>=0">
+      <el-form-item :label="$t('fm.config.widget.size')" v-if="Object.keys(data.options).indexOf('size')>=0 && data.type!='fileupload'">
         {{$t('fm.config.widget.width')}} <el-input style="width: 90px;" type="number" v-model.number="data.options.size.width"></el-input>
         {{$t('fm.config.widget.height')}} <el-input style="width: 90px;" type="number" v-model.number="data.options.size.height"></el-input>
       </el-form-item>
@@ -47,7 +53,7 @@
       <el-form-item :label="$t('fm.config.widget.filterable')" v-if="data.type=='select'">
         <el-switch v-model="data.options.filterable"></el-switch>
       </el-form-item>
-      <el-form-item label="$t('fm.config.widget.allowHalf')" v-if="Object.keys(data.options).indexOf('allowHalf')>=0">
+      <el-form-item :label="$t('fm.config.widget.allowHalf')" v-if="Object.keys(data.options).indexOf('allowHalf')>=0">
         <el-switch
             v-model="data.options.allowHalf"
           >

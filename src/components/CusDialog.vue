@@ -34,7 +34,7 @@ export default {
     },
     title: {
       type: String,
-      default: ''
+      default: '预览'
     },
     width: {
       type: String,
@@ -127,6 +127,26 @@ export default {
 
       .el-loading-spinner{
         margin-top: -12px;
+      }
+    }
+  }
+}
+</style>
+<style lang="scss" scoped>
+/deep/.el-dialog__body{
+  .el-form{
+    &:after{
+      content: '';
+      clear: both;
+      display: table;
+    }
+    .el-form-item{
+      clear: both;
+      &.half-line{
+        display: block;
+        width: 50%;
+        float: left;
+        clear: none;
       }
     }
   }

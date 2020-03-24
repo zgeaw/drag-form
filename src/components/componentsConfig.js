@@ -1,4 +1,5 @@
 // 基础字段
+import zhCN from '../lang/zh-CN'
 export const basicComponents = [
   {
     type: 'input',
@@ -6,11 +7,12 @@ export const basicComponents = [
     options: {
       width: '100%',
       defaultValue: '',
-      required: false,
+      required: true,
       dataType: 'string',
       pattern: '',
-      placeholder: '',
+      placeholder: zhCN.fm.placeholder.input,
       disabled: false,
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -22,7 +24,8 @@ export const basicComponents = [
       required: false,
       disabled: false,
       pattern: '',
-      placeholder: ''
+      placeholder: zhCN.fm.placeholder.input,
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -30,33 +33,68 @@ export const basicComponents = [
     icon: 'icon-number',
     options: {
       width: '',
-      required: false,
+      required: true,
       defaultValue: 0,
       min: '',
       max: '',
       step: 1,
       disabled: false,
-      controlsPosition: ''
+      controlsPosition: '',
+      halfLine: false // 是否整行显示
     }
   },
   {
     type: 'radio',
     icon: 'icon-radio-active',
     options: {
-      inline: false,
-      defaultValue: '',
-      showLabel: false,
+      inline: true,
+      defaultValue: '1',
+      showLabel: true,
       options: [
         {
-          value: 'Option 1',
+          value: '0',
           label: 'Option 1'
         },
         {
-          value: 'Option 2',
+          value: '1',
           label: 'Option 2'
         },
         {
-          value: 'Option 3',
+          value: '2',
+          label: 'Option 3'
+        }
+      ],
+      required: true,
+      width: '',
+      remote: false,
+      remoteOptions: [],
+      props: {
+        value: 'value',
+        label: 'label'
+      },
+      remoteFunc: '',
+      disabled: false,
+      halfLine: false // 是否整行显示
+    }
+  },
+  {
+    type: 'checkbox',
+    icon: 'icon-check-box',
+    options: {
+      inline: true,
+      defaultValue: [],
+      showLabel: true,
+      options: [
+        {
+          value: '0',
+          label: 'Option 1'
+        },
+        {
+          value: '1',
+          label: 'Option 2'
+        },
+        {
+          value: '2',
           label: 'Option 3'
         }
       ],
@@ -70,36 +108,7 @@ export const basicComponents = [
       },
       remoteFunc: '',
       disabled: false,
-    }
-  },
-  {
-    type: 'checkbox',
-    icon: 'icon-check-box',
-    options: {
-      inline: false,
-      defaultValue: [],
-      showLabel: false,
-      options: [
-        {
-          value: 'Option 1'
-        },
-        {
-          value: 'Option 2'
-        },
-        {
-          value: 'Option 3'
-        }
-      ],
-      required: false,
-      width: '',
-      remote: false,
-      remoteOptions: [],
-      props: {
-        value: 'value',
-        label: 'label'
-      },
-      remoteFunc: '',
-      disabled: false,
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -111,14 +120,15 @@ export const basicComponents = [
       disabled: false,
       editable: true,
       clearable: true,
-      placeholder: '',
-      startPlaceholder: '',
-      endPlaceholder: '',
+      placeholder: zhCN.fm.placeholder.select,
+      startPlaceholder: zhCN.fm.placeholder.select,
+      endPlaceholder: zhCN.fm.placeholder.select,
       isRange: false,
       arrowControl: true,
       format: 'HH:mm:ss',
       required: false,
       width: '',
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -130,14 +140,15 @@ export const basicComponents = [
       disabled: false,
       editable: true,
       clearable: true,
-      placeholder: '',
-      startPlaceholder: '',
-      endPlaceholder: '',
+      placeholder: zhCN.fm.placeholder.select,
+      startPlaceholder: zhCN.fm.placeholder.select,
+      endPlaceholder: zhCN.fm.placeholder.select,
       type: 'date',
       format: 'yyyy-MM-dd',
       timestamp: false,
       required: false,
       width: '',
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -148,7 +159,8 @@ export const basicComponents = [
       max: 5,
       disabled: false,
       allowHalf: false,
-      required: false
+      required: false,
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -158,7 +170,8 @@ export const basicComponents = [
       defaultValue: '',
       disabled: false,
       showAlpha: false,
-      required: false
+      required: false,
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -169,8 +182,8 @@ export const basicComponents = [
       multiple: false,
       disabled: false,
       clearable: false,
-      placeholder: '',
-      required: false,
+      placeholder: zhCN.fm.placeholder.select,
+      required: true,
       showLabel: false,
       width: '',
       options: [
@@ -190,7 +203,8 @@ export const basicComponents = [
         value: 'value',
         label: 'label'
       },
-      remoteFunc: ''
+      remoteFunc: '',
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -200,6 +214,7 @@ export const basicComponents = [
       defaultValue: false,
       required: false,
       disabled: false,
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -214,7 +229,8 @@ export const basicComponents = [
       step: 1,
       showInput: false,
       range: false,
-      width: ''
+      width: '',
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -223,6 +239,7 @@ export const basicComponents = [
     options: {
       defaultValue: 'This is a text',
       customClass: '',
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -245,7 +262,8 @@ export const basicComponents = [
       isDelete: false,
       min: 0,
       isEdit: false,
-      action: 'https://jsonplaceholder.typicode.com/photos/'
+      action: 'https://jsonplaceholder.typicode.com/photos/',
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -254,8 +272,8 @@ export const basicComponents = [
     options: {
       defaultValue: [],
       size: {
-        //width: 100,
-        //height: 100,
+        // width: 0,
+        // height: 0,
       },
       //width: '',
       tokenFunc: 'funcGetToken',
@@ -268,7 +286,8 @@ export const basicComponents = [
       isDelete: false,
       //min: 0,
       isEdit: false,
-      action: 'https://jsonplaceholder.typicode.com/photos/'
+      action: 'https://jsonplaceholder.typicode.com/photos/',
+      halfLine: false // 是否整行显示
     }
   },
   {
@@ -287,7 +306,8 @@ export const basicComponents = [
         label: 'label',
         children: 'children'
       },
-      remoteFunc: ''
+      remoteFunc: '',
+      halfLine: false // 是否整行显示
     }
   }
 ]
@@ -355,23 +375,23 @@ export const advanceComponents = [
 
 // 字段布局
 export const layoutComponents = [
-  {
-    type: 'grid',
-    icon: 'icon-grid-',
-    columns: [
-      {
-        span: 12,
-        list: []
-      },
-      {
-        span: 12,
-        list: []
-      }
-    ],
-    options: {
-      gutter: 0,
-      justify: 'start',
-      align: 'top'
-    }
-  }
+  // {
+  //   type: 'grid',
+  //   icon: 'icon-grid-',
+  //   columns: [
+  //     {
+  //       span: 12,
+  //       list: []
+  //     },
+  //     {
+  //       span: 12,
+  //       list: []
+  //     }
+  //   ],
+  //   options: {
+  //     gutter: 0,
+  //     justify: 'start',
+  //     align: 'top'
+  //   }
+  // }
 ]

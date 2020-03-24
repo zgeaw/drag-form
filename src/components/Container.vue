@@ -5,7 +5,7 @@
         <el-aside width="250px">
           <div class="components-list">   
             
-            <template v-if="layoutFields.length">
+            <!-- <template v-if="layoutFields.length">
               <div class="widget-cate">{{$t('fm.components.layout.title')}}</div>
               <draggable tag="ul" :list="layoutComponents" 
                 v-bind="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
@@ -21,7 +21,7 @@
                   </a>
                 </li>
               </draggable>
-            </template>
+            </template> -->
 
             <template v-if="basicFields.length">
               <div class="widget-cate">{{$t('fm.components.basic.title')}}</div>
@@ -41,7 +41,7 @@
               </draggable>
             </template>
             
-            <template v-if="advanceFields.length">
+            <!-- <template v-if="advanceFields.length">
               <div class="widget-cate">{{$t('fm.components.advance.title')}}</div>
               <draggable tag="ul" :list="advanceComponents" 
                 v-bind="{group:{ name:'people', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}"
@@ -57,7 +57,7 @@
                   </a>
                 </li>
               </draggable>
-            </template>
+            </template> -->
             
           </div>
           
@@ -80,13 +80,13 @@
         
         <el-aside class="widget-config-container">
           <el-container>
-            <el-header height="45px">
+            <!-- <el-header height="45px">
               <div class="config-tab" :class="{active: configTab=='widget'}" @click="handleConfigSelect('widget')">{{$t('fm.config.widget.title')}}</div>
               <div class="config-tab" :class="{active: configTab=='form'}" @click="handleConfigSelect('form')">{{$t('fm.config.form.title')}}</div>
-            </el-header>
+            </el-header> -->
             <el-main class="config-content">
+              <!-- <form-config :data="widgetForm.config"></form-config> -->
               <widget-config v-show="configTab=='widget'" :data="widgetFormSelect"></widget-config>
-              <form-config v-show="configTab=='form'" :data="widgetForm.config"></form-config>
             </el-main>
           </el-container>
           
@@ -218,7 +218,7 @@ export default {
     },
     layoutFields: {
       type: Array,
-      default: () => ['grid']
+      default: () => []
     }
   },
   data () {
@@ -230,10 +230,10 @@ export default {
       widgetForm: {
         list: [],
         config: {
-          labelWidth: 100,
+          labelWidth: 150,
           labelPosition: 'right',
           size: 'small'
-        },
+        }
       },
       configTab: 'widget',
       widgetFormSelect: null,
@@ -335,10 +335,21 @@ export default {
     handleReset () {
       this.$refs.generateForm.reset()
     },
+    // 初始化json格式
+    initJsonTemplate () {
+      let list = this.widgetForm.list || [];
+      list.map((item, i) => {
+        item.sort = i + 1
+      })
+      return {
+        list
+      }
+    },
     handleGenerateJson () {
       this.jsonVisible = true
-      this.jsonTemplate = this.widgetForm
-      console.log(JSON.stringify(this.widgetForm))
+      const jsonTemplate = this.initJsonTemplate()
+      this.jsonTemplate = jsonTemplate
+      console.log(JSON.stringify(jsonTemplate))
       this.$nextTick(() => {
 
         const editor = ace.edit('jsoneditor')
@@ -350,14 +361,14 @@ export default {
             this.$message.success(this.$t('fm.message.copySuccess'))
           })
         }
-        this.jsonCopyValue = JSON.stringify(this.widgetForm)
+        this.jsonCopyValue = JSON.stringify(jsonTemplate)
       })
     },
     handleGenerateCode () {
-
-      this.codeVisible = true
-      this.htmlTemplate = generateCode(JSON.stringify(this.widgetForm), 'html')
-      this.vueTemplate = generateCode(JSON.stringify(this.widgetForm), 'vue')
+      this.codeVisible = true      
+      const jsonTemplate = this.initJsonTemplate()
+      this.htmlTemplate = generateCode(JSON.stringify(jsonTemplate), 'html')
+      this.vueTemplate = generateCode(JSON.stringify(jsonTemplate), 'vue')
       this.$nextTick(() => {
         const editor = ace.edit('codeeditor')
         editor.session.setMode("ace/mode/html")

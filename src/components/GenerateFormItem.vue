@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="widget.name" :prop="widget.model">
+  <el-form-item :label="widget.name" :prop="widget.model" :class="{'half-line': widget.options.halfLine}">
     <template v-if="widget.type == 'input'" >
       <el-input 
         v-if="widget.options.dataType == 'number' || widget.options.dataType == 'integer' || widget.options.dataType == 'float'"
@@ -263,7 +263,6 @@ export default {
     dataModel: {
       deep: true,
       handler (val) {
-        console.log('捕捉到数据了', val)
         this.models[this.widget.model] = val
         this.$emit('update:models', {
           ...this.models,

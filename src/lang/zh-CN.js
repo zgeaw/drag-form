@@ -33,6 +33,11 @@ export default {
       },
       layout: {
         title: '布局模块',
+      },
+      halfLine: {
+        title: '布局',
+        inline: '半行',
+        block: '整行'
       }
     },
     description: {
@@ -182,6 +187,10 @@ export default {
       preview: '预览',
       edit: '替换',
       delete: '删除'
+    },
+    placeholder: {
+      input: '请输入',
+      select: '请选择'
     }
   }
 }
