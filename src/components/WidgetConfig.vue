@@ -1,14 +1,14 @@
 <template>
   <div v-if="show">
     <el-form label-position="top">
-      <!-- <el-form-item :label="$t('fm.config.widget.model')" v-if="data.type!='grid'">
-        <el-input v-model="data.model"></el-input>
-      </el-form-item> -->
       <el-form-item :label="$t('fm.components.halfLine.title')">
         <el-radio-group v-model="data.options.halfLine">
           <el-radio-button :label="true">{{$t('fm.components.halfLine.inline')}}</el-radio-button>
           <el-radio-button :label="false">{{$t('fm.components.halfLine.block')}}</el-radio-button>
         </el-radio-group>
+      </el-form-item>
+      <el-form-item :label="$t('fm.config.widget.model')" v-if="data.type!='grid'">
+        <el-input v-model="data.model"></el-input>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.name')" v-if="data.type!='grid'">
         <el-input v-model="data.name"></el-input>
