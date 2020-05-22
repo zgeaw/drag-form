@@ -2,8 +2,7 @@
   <div>
     <el-form ref="generateForm" 
       label-suffix=":"
-      :size="data.config.size"
-      :model="models" :rules="rules" :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
+      :model="models" :rules="rules">
       <template v-for="item in data.list">
 
         <template v-if="item.type == 'grid'">
@@ -126,6 +125,12 @@ export default {
             reject(new Error(this.$t('fm.message.validError')).message)
           }
         })
+      })
+    },
+    setData (obj) {
+      return new Promise((resolve, reject) => {
+        this.models = Object.assign({}, this.models, obj)
+        resolve(this.models)
       })
     },
     reset () {

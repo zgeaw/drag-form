@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '../demo/Home.vue'
+import GenerateForm from '../demo/GenerateForm.vue'
 import LanguageView from './LanguageView.vue'
 
 Vue.use(Router)
@@ -23,6 +24,11 @@ export default new Router({
           path: '',
           name: 'index',
           component: Home
+        },
+        {
+          path: 'GenerateForm',
+          name: 'GenerateForm',
+          component: GenerateForm
         }
       ]
     }
