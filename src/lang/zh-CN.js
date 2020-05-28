@@ -2,6 +2,7 @@ export default {
   fm: {
     components: {
       fields: {
+        flag: '审核结果',
         input: '单行文本',
         textarea: '多行文本',
         number: '计数器',

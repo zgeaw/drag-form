@@ -210,7 +210,7 @@ export default {
     },
     basicFields: {
       type: Array,
-      default: () => ['input', 'textarea', 'number', 'radio', 'checkbox', 'time', 'date', 'rate', 'color', 'select', 'switch', 'slider', 'imgupload', 'fileupload', 'cascader']
+      default: () => ['flag', 'input', 'textarea', 'number', 'radio', 'checkbox', 'time', 'date', 'rate', 'color', 'select', 'switch', 'slider', 'imgupload', 'fileupload', 'cascader']
     },
     advanceFields: {
       type: Array,

@@ -8,7 +8,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.model')" v-if="data.type!='grid'">
-        <el-input v-model="data.model"></el-input>
+        <el-input v-model="data.model" :disabled="data.type == 'flag'"></el-input>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.name')" v-if="data.type!='grid'">
         <el-input v-model="data.name"></el-input>
@@ -72,7 +72,7 @@
         </el-switch>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.option')" v-if="Object.keys(data.options).indexOf('options')>=0">
-        <el-radio-group v-model="data.options.remote" size="mini" style="margin-bottom:10px;">
+        <el-radio-group v-model="data.options.remote" size="mini" style="margin-bottom:10px;" v-if="data.type != 'flag'">
           <el-radio-button :label="false">{{$t('fm.config.widget.staticData')}}</el-radio-button>
           <el-radio-button :label="true">{{$t('fm.config.widget.remoteData')}}</el-radio-button>
         </el-radio-group>
@@ -90,7 +90,7 @@
           </div>
         </template>
         <template v-else>
-          <template v-if="data.type=='radio' || (data.type=='select'&&!data.options.multiple)">
+          <template v-if="data.type=='radio' || data.type == 'flag' || (data.type=='select'&&!data.options.multiple)">
             <el-radio-group v-model="data.options.defaultValue">
               <draggable tag="ul" :list="data.options.options" 
                 v-bind="{group:{ name:'options'}, ghostClass: 'ghost',handle: '.drag-item'}"
@@ -101,12 +101,12 @@
                     :label="item.value" 
                     style="margin-right: 5px;"
                   >
-                    <el-input :style="{'width': data.options.showLabel? '90px': '180px' }" size="mini" v-model="item.value"></el-input>
+                    <el-input :style="{'width': data.options.showLabel? '90px': '180px' }" :disabled="data.type == 'flag'" size="mini" v-model="item.value"></el-input>
                     <el-input style="width:90px;" size="mini" v-if="data.options.showLabel" v-model="item.label"></el-input>
                     <!-- <input v-model="item.value"/> -->
                   </el-radio>
-                  <i class="drag-item" style="font-size: 16px;margin: 0 5px;cursor: move;"><i class="iconfont icon-icon_bars"></i></i>
-                  <el-button @click="handleOptionsRemove(index)" circle plain type="danger" size="mini" icon="el-icon-minus" style="padding: 4px;margin-left: 5px;"></el-button>
+                  <i class="drag-item" style="font-size: 16px;margin: 0 5px;cursor: move;" v-if="data.type != 'flag'"><i class="iconfont icon-icon_bars"></i></i>
+                  <el-button @click="handleOptionsRemove(index)" circle plain type="danger" v-if="data.type != 'flag'" size="mini" icon="el-icon-minus" style="padding: 4px;margin-left: 5px;"></el-button>
                   
                 </li>
               </draggable>
@@ -136,7 +136,7 @@
               </draggable>
             </el-checkbox-group>
           </template>
-          <div style="margin-left: 22px;">
+          <div style="margin-left: 22px;" v-if="data.type != 'flag'">
             <el-button type="text" @click="handleAddOption">{{$t('fm.actions.addOption')}}</el-button>
           </div>
         </template>

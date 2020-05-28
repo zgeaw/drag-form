@@ -1,8 +1,10 @@
 <template>
   <div>
     <fm-generate-form ref="generateFormRef" :data="jsonData" />
-    <el-button @click="init">初始化</el-button>
-    <el-button @click="reset">复位</el-button>
+    <div style="text-align: center;">
+      <el-button @click="init">初始化</el-button>
+      <el-button @click="reset">复位</el-button>
+    </div>
   </div>
 </template>
 
@@ -12,109 +14,95 @@ export default {
     return {
       jsonData: {
         "list": [
-          {
-            "type": "input",
-            "icon": "icon-input",
-            "options": {
-              "width": "100%",
-              "defaultValue": "",
-              "required": true,
-              "dataType": "string",
-              "pattern": "",
-              "placeholder": "请输入",
-              "disabled": false,
-              "halfLine": false,
-              "remoteFunc": "func_1590119129000_76485"
-            },
-            "name": "电话",
-            "key": "1590119129000_76485",
-            "model": "phone",
-            "rules": [
+        {
+          "type": "flag",
+          "icon": "icon-check-box",
+          "options": {
+            "inline": true,
+            "defaultValue": "1",
+            "showLabel": true,
+            "options": [
               {
-                "type": "string",
-                "message": "电话格式不正确"
+                "value": "1",
+                "label": "通过"
               },
               {
-                "required": true,
-                "message": "电话必须填写"
+                "value": "2",
+                "label": "驳回"
               }
             ],
-            "sort": 1
+            "required": true,
+            "width": "",
+            "remote": false,
+            "remoteOptions": [],
+            "props": {
+              "value": "value",
+              "label": "label"
+            },
+            "remoteFunc": "func_flag",
+            "disabled": false,
+            "halfLine": false
           },
-          {
-            "type": "radio",
-            "icon": "icon-radio-active",
-            "options": {
-              "inline": true,
-              "defaultValue": "1",
-              "showLabel": true,
-              "options": [
-                {
-                  "value": "0",
-                  "label": "保密"
-                },
-                {
-                  "value": "1",
-                  "label": "男"
-                },
-                {
-                  "value": "2",
-                  "label": "女"
-                }
-              ],
+          "name": "审核结果",
+          "key": "1590657204000_85813",
+          "model": "flag",
+          "rules": [
+            {
               "required": true,
-              "width": "",
-              "remote": false,
-              "remoteOptions": [],
-              "props": {
-                "value": "value",
-                "label": "label"
-              },
-              "remoteFunc": "func_1590119256000_1784",
-              "disabled": false,
-              "halfLine": false
-            },
-            "name": "性别",
-            "key": "1590119256000_1784",
-            "model": "sex",
-            "rules": [
-              {
-                "required": true,
-                "message": "性别必须填写"
-              }
-            ],
-            "sort": 2
+              "message": "审核结果必须填写"
+            }
+          ],
+          "sort": 1
+        },
+        {
+          "type": "input",
+          "icon": "icon-input",
+          "options": {
+            "width": "100%",
+            "defaultValue": "",
+            "required": true,
+            "dataType": "string",
+            "pattern": "",
+            "placeholder": "请输入",
+            "disabled": false,
+            "halfLine": false,
+            "remoteFunc": "func_1590657213000_3186"
           },
-          {
-            "type": "input",
-            "icon": "icon-input",
-            "options": {
-              "width": "100%",
-              "defaultValue": "1",
-              "required": true,
-              "dataType": "string",
-              "pattern": "",
-              "placeholder": "请输入",
-              "disabled": false,
-              "halfLine": false,
-              "remoteFunc": "func_1590119207000_86383"
+          "name": "单行文本",
+          "key": "1590657213000_3186",
+          "model": "input_1590657213000_3186",
+          "rules": [
+            {
+              "type": "string",
+              "message": "单行文本格式不正确"
             },
-            "name": "统计",
-            "key": "1590119207000_86383",
-            "model": "count",
-            "rules": [
-              {
-                "type": "string",
-                "message": "统计格式不正确"
-              },
-              {
-                "required": true,
-                "message": "统计必须填写"
-              }
-            ],
-            "sort": 3
-          }
-        ]
+            {
+              "required": true,
+              "message": "单行文本必须填写"
+            }
+          ],
+          "sort": 2
+        },
+        {
+          "type": "textarea",
+          "icon": "icon-diy-com-textarea",
+          "options": {
+            "width": "100%",
+            "defaultValue": "",
+            "required": false,
+            "disabled": false,
+            "pattern": "",
+            "placeholder": "请输入",
+            "halfLine": false,
+            "remoteFunc": "func_1590657214000_40335"
+          },
+          "name": "多行文本",
+          "key": "1590657214000_40335",
+          "model": "textarea_1590657214000_40335",
+          "rules": [],
+          "sort": 3
+        }
+      ]
       }
     }
   },
@@ -126,7 +114,7 @@ export default {
     init () {
       // 设置表单数据
       this.$refs.generateFormRef.setData({
-        count: '5'
+        input_1590657213000_3186: '5'
       })
     },
     // 复位

@@ -89,32 +89,43 @@ export default {
   },
   methods: {
     handleMoveEnd ({newIndex, oldIndex}) {
-      console.log('index', newIndex, oldIndex)
+      //console.log('index', newIndex, oldIndex)
     },
     handleSelectWidget (index) {
-      console.log(index, '#####')
       this.selectWidget = this.data.list[index]
     },
     handleWidgetAdd (evt) {
-      console.log('add', evt)
-      console.log('end', evt)
       const newIndex = evt.newIndex
       const to = evt.to
-      console.log(to)
       
       //为拖拽到容器的元素添加唯一 key
       const key = Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
-      this.$set(this.data.list, newIndex, {
-        ...this.data.list[newIndex],
-        options: {
-          ...this.data.list[newIndex].options,
-          remoteFunc: 'func_' + key
-        },
-        key,
-        // 绑定键值
-        model: this.data.list[newIndex].type + '_' + key,
-        rules: []
-      })
+      let type = this.data.list[newIndex].type
+      if(type === 'flag'){
+        this.$set(this.data.list, newIndex, {
+          ...this.data.list[newIndex],
+          options: {
+            ...this.data.list[newIndex].options,
+            remoteFunc: 'func_flag'
+          },
+          key,
+          // 绑定键值
+          model: this.data.list[newIndex].type,
+          rules: []
+        })
+      }else{
+        this.$set(this.data.list, newIndex, {
+          ...this.data.list[newIndex],
+          options: {
+            ...this.data.list[newIndex].options,
+            remoteFunc: 'func_' + key
+          },
+          key,
+          // 绑定键值
+          model: this.data.list[newIndex].type + '_' + key,
+          rules: []
+        })
+      }      
 
       if (this.data.list[newIndex].type === 'radio' || this.data.list[newIndex].type === 'checkbox' || this.data.list[newIndex].type === 'select') {
         this.$set(this.data.list, newIndex, {
@@ -138,7 +149,6 @@ export default {
       this.selectWidget = this.data.list[newIndex]
     },
     handleWidgetColAdd ($event, row, colIndex) {
-      console.log('coladd', $event, row, colIndex)
       const newIndex = $event.newIndex
       const oldIndex = $event.oldIndex
       const item = $event.item
@@ -154,7 +164,7 @@ export default {
         return false
       }
 
-      console.log('from', item)
+      //console.log('from', item)
 
       const key = Date.parse(new Date()) + '_' + Math.ceil(Math.random() * 99999)
 

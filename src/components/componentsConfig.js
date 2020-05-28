@@ -1,6 +1,36 @@
 // 基础字段
 import zhCN from '../lang/zh-CN'
-export const basicComponents = [
+export const basicComponents = [  
+  {
+    type: 'flag',
+    icon: 'icon-check-box',
+    options: {
+      inline: true,
+      defaultValue: '1',
+      showLabel: true,
+      options: [
+        {
+          value: '1',
+          label: '通过'
+        },
+        {
+          value: '2',
+          label: '驳回'
+        }
+      ],
+      required: true,
+      width: '',
+      remote: false,
+      remoteOptions: [],
+      props: {
+        value: 'value',
+        label: 'label'
+      },
+      remoteFunc: '',
+      disabled: false,
+      halfLine: false // 是否整行显示
+    }
+  },
   {
     type: 'input',
     icon: 'icon-input',

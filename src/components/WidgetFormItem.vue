@@ -5,6 +5,21 @@
       :label="element.name"
       @click.native.stop="handleSelectWidget(index)"
     >
+        <template v-if="element.type == 'flag'">
+          <el-radio-group v-model="element.options.defaultValue"
+            :style="{width: element.options.width}"
+            :disabled="element.options.disabled"
+          >
+            <el-radio  
+              :style="{display: element.options.inline ? 'inline-block' : 'block'}"
+              :label="item.value" v-for="(item, index) in element.options.options" :key="item.value + index"
+              
+            >
+              {{element.options.showLabel ? item.label : item.value}}
+            </el-radio>
+          </el-radio-group>
+        </template>
+
         <template v-if="element.type == 'input'">
           <el-input 
             v-model="element.options.defaultValue"

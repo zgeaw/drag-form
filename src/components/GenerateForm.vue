@@ -2,7 +2,7 @@
   <div>
     <el-form ref="generateForm" 
       label-suffix=":"
-      :model="models" :rules="rules">
+      :model="models" :rules="rules" :label-width="labelWidth || '150px'">
       <template v-for="item in data.list">
 
         <template v-if="item.type == 'grid'">
@@ -64,7 +64,13 @@ export default {
   components: {
     GenetateFormItem
   },
-  props: ['data', 'remote', 'value', 'insite'],
+  props: [
+    'data', 
+    'remote', 
+    'value', 
+    'insite', 
+    'labelWidth'
+  ],
   data () {
     return {
       models: {},

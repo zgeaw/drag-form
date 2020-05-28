@@ -38,7 +38,7 @@
       ></el-input-number>
     </template>
 
-    <template v-if="widget.type == 'radio'">
+    <template v-if="widget.type == 'radio' || widget.type == 'flag'">
       <el-radio-group v-model="dataModel"
         :style="{width: widget.options.width}"
         :disabled="widget.options.disabled"
