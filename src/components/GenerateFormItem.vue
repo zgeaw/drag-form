@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="widget.name" :prop="widget.model" :class="{'half-line': widget.options.halfLine}">
+  <el-form-item :label="widget.name" :prop="widget.model" :class="{'half-line': widget.options.halfLine}" v-if="!widget.options.hidden">
     <template v-if="widget.type == 'input'" >
       <el-input 
         v-if="widget.options.dataType == 'number' || widget.options.dataType == 'integer' || widget.options.dataType == 'float'"

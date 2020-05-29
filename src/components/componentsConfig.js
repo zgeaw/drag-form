@@ -2,6 +2,7 @@
 import zhCN from '../lang/zh-CN'
 export const basicComponents = [  
   {
+    id: '',
     type: 'flag',
     icon: 'icon-check-box',
     options: {
@@ -27,11 +28,13 @@ export const basicComponents = [
         label: 'label'
       },
       remoteFunc: '',
-      disabled: false,
+      disabled: false,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'input',
     icon: 'icon-input',
     options: {
@@ -41,11 +44,13 @@ export const basicComponents = [
       dataType: 'string',
       pattern: '',
       placeholder: zhCN.fm.placeholder.input,
-      disabled: false,
+      disabled: false,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'textarea',
     icon: 'icon-diy-com-textarea',
     options: {
@@ -54,11 +59,13 @@ export const basicComponents = [
       required: false,
       disabled: false,
       pattern: '',
-      placeholder: zhCN.fm.placeholder.input,
+      placeholder: zhCN.fm.placeholder.input,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'number',
     icon: 'icon-number',
     options: {
@@ -69,11 +76,13 @@ export const basicComponents = [
       max: '',
       step: 1,
       disabled: false,
-      controlsPosition: '',
+      controlsPosition: '',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'radio',
     icon: 'icon-radio-active',
     options: {
@@ -103,11 +112,13 @@ export const basicComponents = [
         label: 'label'
       },
       remoteFunc: '',
-      disabled: false,
+      disabled: false,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'checkbox',
     icon: 'icon-check-box',
     options: {
@@ -137,11 +148,13 @@ export const basicComponents = [
         label: 'label'
       },
       remoteFunc: '',
-      disabled: false,
+      disabled: false,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'time',
     icon: 'icon-time',
     options: {
@@ -157,11 +170,13 @@ export const basicComponents = [
       arrowControl: true,
       format: 'HH:mm:ss',
       required: false,
-      width: '',
+      width: '',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'date',
     icon: 'icon-date',
     options: {
@@ -177,11 +192,13 @@ export const basicComponents = [
       format: 'yyyy-MM-dd',
       timestamp: false,
       required: false,
-      width: '',
+      width: '',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'rate',
     icon: 'icon-pingfen1',
     options: {
@@ -189,22 +206,26 @@ export const basicComponents = [
       max: 5,
       disabled: false,
       allowHalf: false,
-      required: false,
+      required: false,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'color',
     icon: 'icon-color',
     options: {
       defaultValue: '',
       disabled: false,
       showAlpha: false,
-      required: false,
+      required: false,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'select',
     icon: 'icon-select',
     options: {
@@ -233,21 +254,25 @@ export const basicComponents = [
         value: 'value',
         label: 'label'
       },
-      remoteFunc: '',
+      remoteFunc: '',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'switch',
     icon: 'icon-switch',
     options: {
       defaultValue: false,
       required: false,
-      disabled: false,
+      disabled: false,      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'slider',
     icon: 'icon-slider',
     options: {
@@ -259,20 +284,24 @@ export const basicComponents = [
       step: 1,
       showInput: false,
       range: false,
-      width: '',
+      width: '',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'text',
     icon: 'icon-wenzishezhi-',
     options: {
       defaultValue: 'This is a text',
-      customClass: '',
+      customClass: '',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'imgupload',
     icon: 'icon-tupian',
     options: {
@@ -292,11 +321,13 @@ export const basicComponents = [
       isDelete: false,
       min: 0,
       isEdit: false,
-      action: 'https://jsonplaceholder.typicode.com/photos/',
+      action: 'https://jsonplaceholder.typicode.com/photos/',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'fileupload',
     icon: 'icon-file',
     options: {
@@ -316,11 +347,13 @@ export const basicComponents = [
       isDelete: false,
       //min: 0,
       isEdit: false,
-      action: 'https://jsonplaceholder.typicode.com/photos/',
+      action: 'https://jsonplaceholder.typicode.com/photos/',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   },
   {
+    id: '',
     type: 'cascader',
     icon: 'icon-jilianxuanze',
     options: {
@@ -336,7 +369,8 @@ export const basicComponents = [
         label: 'label',
         children: 'children'
       },
-      remoteFunc: '',
+      remoteFunc: '',      
+      hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
   }
@@ -345,13 +379,16 @@ export const basicComponents = [
 // 高级字段
 export const advanceComponents = [
   {
+    id: '',
     type: 'blank',
     icon: 'icon-zidingyishuju',
     options: {
-      defaultType: 'String'
+      defaultType: 'String',
+      hidden: false // 是否隐藏
     }
   },
   {
+    id: '',
     type: 'imgupload',
     icon: 'icon-tupian',
     options: {
@@ -371,18 +408,22 @@ export const advanceComponents = [
       isDelete: false,
       min: 0,
       isEdit: false,
-      action: 'https://jsonplaceholder.typicode.com/photos/'
+      action: 'https://jsonplaceholder.typicode.com/photos/',
+      hidden: false // 是否隐藏
     }
   },
   {
+    id: '',
     type: 'editor',
     icon: 'icon-fuwenbenkuang',
     options: {
       defaultValue: '',
-      width: ''
+      width: '',      
+      hidden: false // 是否隐藏
     }
   },
   {
+    id: '',
     type: 'cascader',
     icon: 'icon-jilianxuanze',
     options: {
@@ -398,7 +439,8 @@ export const advanceComponents = [
         label: 'label',
         children: 'children'
       },
-      remoteFunc: ''
+      remoteFunc: '',            
+      hidden: false // 是否隐藏
     }
   }
 ]

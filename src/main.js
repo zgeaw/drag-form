@@ -9,6 +9,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import enLocale from 'element-ui/lib/locale/lang/en'
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
+import _ from 'lodash'
+Vue.prototype._ = _
+window._ = _
 
 Vue.use(VueI18n)
 Vue.use(VueEditor)

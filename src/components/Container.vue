@@ -259,7 +259,7 @@ export default {
           })
         },
         upload_callback (response, file, fileList) {
-          console.log('callback', response, file, fileList)
+          // console.log('callback', response, file, fileList)
         }
       },
       widgetModels: {},
@@ -315,13 +315,22 @@ export default {
       console.log('end', evt)
     },
     handleMoveStart ({oldIndex}) {
-      console.log('start', oldIndex, this.basicComponents)
+      // console.log('start', oldIndex, this.basicComponents)
     },
-    handleMove () {
-      return true
+    // 拖动组件
+    handleMove (e, f, g) {
+      let type = e.draggedContext.element.type
+      let index = _.find(this.widgetForm.list, {type})
+      let status = true
+      if(index){
+        // 禁止拖动多个审批结果组件
+        status = false
+      }
+      return status
     },
+    // 预览
     handlePreview () {
-      console.log(this.widgetForm)
+      // console.log(this.widgetForm)
       this.previewVisible = true
     },
     handleTest () {
@@ -345,11 +354,12 @@ export default {
         list
       }
     },
+    // 生成JSON
     handleGenerateJson () {
       this.jsonVisible = true
       const jsonTemplate = this.initJsonTemplate()
       this.jsonTemplate = jsonTemplate
-      console.log(JSON.stringify(jsonTemplate))
+      // console.log(JSON.stringify(jsonTemplate))
       this.$nextTick(() => {
 
         const editor = ace.edit('jsoneditor')
@@ -364,6 +374,7 @@ export default {
         this.jsonCopyValue = JSON.stringify(jsonTemplate)
       })
     },
+    // 生成代码
     handleGenerateCode () {
       this.codeVisible = true      
       const jsonTemplate = this.initJsonTemplate()
@@ -377,6 +388,7 @@ export default {
         vueeditor.session.setMode("ace/mode/html")
       })
     },
+    // 导入JSON
     handleUpload () {
       this.uploadVisible = true
       this.$nextTick(() => {
@@ -393,6 +405,7 @@ export default {
         this.$refs.uploadJson.end()
       }
     },
+    // 清空
     handleClear () {
       this.widgetForm = {
         list: [],
@@ -420,18 +433,18 @@ export default {
       }
     },
     handleInput (val) {
-      console.log(val)
+      // console.log(val)
       this.blank = val
     },
     handleDataChange (field, value, data) {
-      console.log(field, value, data)
+      // console.log(field, value, data)
     }
   },
   watch: {
     widgetForm: {
       deep: true,
       handler: function (val) {
-        console.log(this.$refs.widgetForm)
+        // console.log(this.$refs.widgetForm)
       }
     },
     '$lang': function (val) {
