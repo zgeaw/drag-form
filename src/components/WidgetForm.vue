@@ -1,7 +1,7 @@
 <template>
   <div class="widget-form-container">
     <div v-if="data.list.length == 0" class="form-empty">{{$t('fm.description.containerEmpty')}}</div>
-    <el-form :size="data.config.size" label-suffix=":" :label-position="data.config.labelPosition" :label-width="data.config.labelWidth + 'px'">
+    <el-form size="small" label-suffix=":" label-position="right" label-width="150px">
       
       <draggable class="" 
         v-model="data.list" 
