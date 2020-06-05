@@ -322,7 +322,7 @@ export default {
       let type = e.draggedContext.element.type
       let index = _.find(this.widgetForm.list, {type})
       let status = true
-      if(index){
+      if(index && type === 'flag'){
         // 禁止拖动多个审批结果组件
         status = false
       }
