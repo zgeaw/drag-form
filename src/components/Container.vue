@@ -32,7 +32,7 @@
                 :move="handleMove"
               >
                 
-                <li v-if="basicFields.indexOf(item.type)>=0" class="form-edit-widget-label" :class="{'no-put': item.type == 'divider'}" v-for="(item, index) in basicComponents" :key="index">
+                <li v-if="basicFields.indexOf(item.type) >= 0" class="form-edit-widget-label" :class="{'no-put': item.type == 'divider'}" v-for="(item, index) in basicComponents" :key="index">
                   <a>
                     <i class="icon iconfont" :class="item.icon"></i>
                     <span>{{item.name}}</span>
@@ -210,7 +210,7 @@ export default {
     },
     basicFields: {
       type: Array,
-      default: () => ['flag', 'input', 'textarea', 'number', 'radio', 'checkbox', 'time', 'date', 'rate', 'color', 'select', 'switch', 'slider', 'imgupload', 'fileupload', 'cascader']
+      default: () => ['flag', 'remark', 'input', 'textarea', 'number', 'radio', 'checkbox', 'time', 'date', 'rate', 'color', 'select', 'switch', 'slider', 'imgupload', 'fileupload', 'cascader']
     },
     advanceFields: {
       type: Array,
@@ -312,7 +312,7 @@ export default {
       this.configTab = value
     },
     handleMoveEnd (evt) {
-      console.log('end', evt)
+      // console.log('end', evt)
     },
     handleMoveStart ({oldIndex}) {
       // console.log('start', oldIndex, this.basicComponents)
@@ -322,7 +322,7 @@ export default {
       let type = e.draggedContext.element.type
       let index = _.find(this.widgetForm.list, {type})
       let status = true
-      if(index && type === 'flag'){
+      if(index && (type === 'flag' || type === 'remark')){
         // 禁止拖动多个审批结果组件
         status = false
       }

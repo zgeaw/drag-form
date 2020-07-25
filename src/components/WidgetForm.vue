@@ -113,6 +113,18 @@ export default {
           model: this.data.list[newIndex].type,
           rules: []
         })
+      }else if(type === 'remark'){
+        this.$set(this.data.list, newIndex, {
+          ...this.data.list[newIndex],
+          options: {
+            ...this.data.list[newIndex].options,
+            remoteFunc: 'func_remark'
+          },
+          key,
+          // 绑定键值
+          model: this.data.list[newIndex].type,
+          rules: []
+        })
       }else{
         this.$set(this.data.list, newIndex, {
           ...this.data.list[newIndex],

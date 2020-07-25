@@ -8,7 +8,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.model')" v-if="data.type!='grid'">
-        <el-input v-model="data.model" :disabled="data.type == 'flag'"></el-input>
+        <el-input v-model="data.model" :disabled="data.type == 'flag' || data.type == 'remark'"></el-input>
       </el-form-item>
       <el-form-item :label="$t('fm.config.widget.name')" v-if="data.type!='grid'">
         <el-input v-model="data.name"></el-input>
@@ -101,7 +101,7 @@
                     :label="item.value" 
                     style="margin-right: 5px;"
                   >
-                    <el-input :style="{'width': data.options.showLabel? '90px': '180px' }" :disabled="data.type == 'flag'" size="mini" v-model="item.value"></el-input>
+                    <el-input :style="{'width': data.options.showLabel? '90px': '180px' }" :disabled="data.type == 'flag'" size="mini" v-model="item.value" v-if="data.type !== 'flag'"></el-input>
                     <el-input style="width:90px;" size="mini" v-if="data.options.showLabel" v-model="item.label"></el-input>
                     <!-- <input v-model="item.value"/> -->
                   </el-radio>
@@ -413,7 +413,11 @@ export default {
       this.data.rules = []
       Object.keys(this.validator).forEach(key => {
         if (this.validator[key]) {
-          this.data.rules.push(this.validator[key])
+          if(key === 'required'){
+            this.data.rules.unshift(this.validator[key])
+          }else{
+            this.data.rules.push(this.validator[key])
+          }          
         }
       })
     },
@@ -442,9 +446,9 @@ export default {
         this.validator.required = null
       }
 
-      this.$nextTick(() => {
+      // this.$nextTick(() => {
         this.generateRule()
-      })
+      // })
     },
 
     validateDataType (val) {
@@ -457,8 +461,9 @@ export default {
       } else {
         this.validator.type = null
       }
-
-      this.generateRule()
+      this.$nextTick(() => {
+        this.generateRule()
+      })
     },
     valiatePattern (val) {
       if (!this.show) {

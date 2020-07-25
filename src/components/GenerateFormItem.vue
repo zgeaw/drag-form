@@ -19,7 +19,7 @@
       ></el-input>
     </template>
 
-    <template v-if="widget.type == 'textarea'">
+    <template v-if="widget.type == 'textarea' || widget.type == 'remark'">
       <el-input type="textarea" :rows="5"
         v-model="dataModel"
         :disabled="widget.options.disabled"

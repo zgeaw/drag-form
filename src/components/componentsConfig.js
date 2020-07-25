@@ -35,6 +35,21 @@ export const basicComponents = [
   },
   {
     id: '',
+    type: 'remark',
+    icon: 'icon-diy-com-textarea',
+    options: {
+      width: '100%',
+      defaultValue: '',
+      required: true,
+      disabled: false,
+      pattern: '',
+      placeholder: zhCN.fm.placeholder.input,      
+      hidden: false, // 是否隐藏
+      halfLine: false // 是否整行显示
+    }
+  },
+  {
+    id: '',
     type: 'input',
     icon: 'icon-input',
     options: {
@@ -235,16 +250,19 @@ export const basicComponents = [
       clearable: false,
       placeholder: zhCN.fm.placeholder.select,
       required: true,
-      showLabel: false,
+      showLabel: true,
       width: '',
       options: [
         {
-          value: 'Option 1'
+          value: '1',
+          label: '描述1'
         },
         {
-          value: 'Option 2'
+          value: '2',
+          label: '描述2'
         },{
-          value: 'Option 3'
+          value: '3',
+          label: '描述3'
         }
       ],
       remote: false,

@@ -2,7 +2,8 @@ export default {
   fm: {
     components: {
       fields: {
-        flag: 'Radio',
+        flag: 'Flag',
+        remark: 'Remark',
         input: 'Input',
         textarea: 'Textarea',
         number: 'Number',

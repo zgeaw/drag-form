@@ -29,7 +29,7 @@
           ></el-input>
         </template>
 
-        <template v-if="element.type == 'textarea'">
+        <template v-if="element.type == 'textarea' || element.type == 'remark'">
           <el-input type="textarea" :rows="5"
             v-model="element.options.defaultValue"
             :style="{width: element.options.width}"

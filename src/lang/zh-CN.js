@@ -3,6 +3,7 @@ export default {
     components: {
       fields: {
         flag: '审核结果',
+        remark: '审核意见',
         input: '单行文本',
         textarea: '多行文本',
         number: '计数器',
