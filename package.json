@@ -1,7 +1,7 @@
 {
   "name": "drag-form",
   "description": "A designer and generator of form base on Vue.js, make form development simple and efficient.",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "author": "32237384@qq.com",
   "license": "MIT",
   "keywords": [
@@ -18,9 +18,8 @@
   "main": "dist/FormMaking.common.js",
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build:prod": "vue-cli-service build --target lib --name FormMaking ./src/index.js"
+    "build": "vue-cli-service build --target lib --name FormMaking ./src/index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
