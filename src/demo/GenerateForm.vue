@@ -101,6 +101,73 @@ export default {
           "model": "textarea_1590657214000_40335",
           "rules": [],
           "sort": 3
+        },
+        {
+          "id": "",
+          "type": "imgupload",
+          "icon": "icon-tupian",
+          "options": {
+            "defaultValue": [{ "name": "timg (4).jpg", "fileKey": "812c07d163e94fd2a3fb4cbaa0e4e994" }],
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "width": "",
+            "tokenFunc": "funcGetToken",
+            "token": "",
+            "domain": "http://pfp81ptt6.bkt.clouddn.com/",
+            "disabled": false,
+            "required": true,
+            "length": 3,
+            "multiple": false,
+            "isQiniu": false,
+            "min": 0,
+            "action": "/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form",
+            "hidden": false,
+            "halfLine": false,
+            "remoteFunc": "func_1596109246000_10750"
+          },
+          "name": "图片",
+          "key": "1596109246000_10750",
+          "model": "imgupload_1596109246000_10750",
+          "rules": [
+            {
+              "required": true,
+              "message": "图片必须填写"
+            }
+          ],
+          "sort": 1
+        },
+        {
+          "id": "",
+          "type": "fileupload",
+          "icon": "icon-file",
+          "options": {
+            "defaultValue": [{ "name": "timg (4).jpg", "fileKey": "812c07d163e94fd2a3fb4cbaa0e4e994" }],
+            "size": {},
+            "tokenFunc": "funcGetToken",
+            "token": "",
+            "domain": "http://pfp81ptt6.bkt.clouddn.com/",
+            "disabled": false,
+            "required": true,
+            "length": 3,
+            "multiple": false,
+            "isQiniu": false,
+            "action": "/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form",
+            "hidden": false,
+            "halfLine": false,
+            "remoteFunc": "func_1596110413000_54948"
+          },
+          "name": "文件",
+          "key": "1596110413000_54948",
+          "model": "fileupload_1596110413000_54948",
+          "rules": [
+            {
+              "required": true,
+              "message": "文件必须填写"
+            }
+          ],
+          "sort": 1
         }
       ]
       }

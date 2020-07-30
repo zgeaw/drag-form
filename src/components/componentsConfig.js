@@ -333,13 +333,12 @@ export const basicComponents = [
       token: '',
       domain: 'http://pfp81ptt6.bkt.clouddn.com/',
       disabled: false,
-      length: 8,
+      required: true,
+      length: 3,
       multiple: false,
       isQiniu: false,
-      isDelete: false,
       min: 0,
-      isEdit: false,
-      action: 'https://jsonplaceholder.typicode.com/photos/',      
+      action: '/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form',      
       hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
@@ -359,13 +358,12 @@ export const basicComponents = [
       token: '',
       domain: 'http://pfp81ptt6.bkt.clouddn.com/',
       disabled: false,
-      length: 8,
+      required: true,
+      length: 3,
       multiple: false,
       isQiniu: false,
-      isDelete: false,
       //min: 0,
-      isEdit: false,
-      action: 'https://jsonplaceholder.typicode.com/photos/',      
+      action: '/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form',      
       hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }

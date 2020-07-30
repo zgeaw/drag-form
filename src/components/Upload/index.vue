@@ -34,6 +34,7 @@
           class="upload-file" v-for="(item) in fileList" :key="item.key">
           <img :src="item.url" />
 
+
           <el-progress v-if="item.status=='uploading'" :width="miniWidth*0.9" class="upload-progress" type="circle" :percentage="item.percent"></el-progress>
 
           <label class="item-status" v-if="item.status=='success'">
@@ -141,7 +142,9 @@ export default {
       fileList: this.value.map(item => {
         return {
           key: item.key ? item.key : (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999),
-          url: item.url,
+          url: '/cim6d-file-storage-dev/noToken/file/commonFile/download/' + item.fileKey,
+          name: item.name,
+          fileKey: item.fileKey,
           percent: item.percent ? item.percent : 100,
           status: item.status ? item.status : 'success'
         }
@@ -175,18 +178,27 @@ export default {
           key
         })
       })
-      this.fileList = list;
+      // this.fileList = list;
     },
     // 文件上传成功
     uploadFile(res, file, fileList){
+      console.log(111, res, file, fileList)
       const key = (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999)   
       let list = []; 
       fileList.map(item => {
+        let datas = item.response ? item.response.data : {}
+        let fileKey = datas.id || item.fileKey
+        let url = datas.fileUrl || '/cim6d-file-storage-dev/noToken/file/commonFile/download/' + item.fileKey
+        console.log(222, item, fileKey, url)
         list.push({
           ...item,
-          key
+          url,
+          fileKey,
+          key,
+          name: datas.name || item.name
         })
       })
+      console.log(333, list)
       this.fileList = list;
     },
     // 图片上传
@@ -202,7 +214,8 @@ export default {
 
             this.$set(this.fileList, this.editIndex, {
               key,
-              url: reader.name,
+              url: file.name,
+              name: file.name,
               percent: 0,
               status: 'uploading'
             })
@@ -211,7 +224,8 @@ export default {
           } else {
             this.fileList.push({
               key,
-              url: reader.name,
+              url: file.name,
+              name: file.name,
               percent: 0,
               status: 'uploading'
             })
@@ -230,7 +244,7 @@ export default {
     }, 
     uplaodAction (res, file, key) {
       let changeIndex = this.fileList.findIndex(item => item.key === key)
-      console.log(this.fileList.findIndex(item => item.key === key))
+      // console.log(res, this.fileList, changeIndex)
       const xhr = new XMLHttpRequest()
       
       const url = this.action
@@ -242,14 +256,15 @@ export default {
 
       xhr.send(formData)
       xhr.onreadystatechange = () => {
-        console.log(xhr)
         if (xhr.readyState === 4) {
           
-          let resData = JSON.parse(xhr.response)
-          if (resData && resData.url) {
+          let datas = JSON.parse(xhr.response)
+          let resData = datas.data
+          if (resData && resData.fileUrl) {
             this.$set(this.fileList, this.fileList.findIndex(item => item.key === key), {
               ...this.fileList[this.fileList.findIndex(item => item.key === key)],
-              url: resData.url,
+              url: resData.fileUrl,
+              fileKey: resData.id,
               percent: 100
             })
             setTimeout(() => {
@@ -269,7 +284,7 @@ export default {
         }
       }
       xhr.onprogress = (res) => {
-        console.log('progress', res)
+        // console.log('progress', res)
         if (res.total && res.loaded) {
           this.$set(this.fileList[this.fileList.findIndex(item => item.key === key)], 'percent', res.loaded/res.total*100)
         }
@@ -335,7 +350,7 @@ export default {
       this.viewer && this.viewer.destroy()
       this.uploadId = 'upload_' + new Date().getTime()
       
-      console.log(this.viewer)
+      // console.log(this.viewer)
       this.$nextTick(() => {
         this.viewer = new Viewer(document.getElementById(this.uploadId))
         this.viewer.view(this.fileList.findIndex(item => item.key === key))
@@ -346,8 +361,15 @@ export default {
     'fileList': {
       deep: true,
       handler (val) {
-        console.log(2222233, val )
-        this.$emit('input', this.fileList)
+        let list =  []
+        this.fileList.map(item => {
+          list.push({
+            name: item.name,
+            fileKey: item.fileKey
+          })
+        })
+        console.log('watch', val, this.fileList, list)
+        this.$emit('input', list)
       }
     }
   }
