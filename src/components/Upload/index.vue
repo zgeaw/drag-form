@@ -135,6 +135,11 @@ export default {
     isFile: {
       type: Boolean,
       default: false
+    },
+    // 下载地址
+    downLoadAction: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -142,7 +147,7 @@ export default {
       fileList: this.value.map(item => {
         return {
           key: item.key ? item.key : (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999),
-          url: '/cim6d-file-storage-dev/noToken/file/commonFile/download/' + item.fileKey,
+          url: this.downLoadAction + item.fileKey,
           name: item.name,
           fileKey: item.fileKey,
           percent: item.percent ? item.percent : 100,
@@ -182,14 +187,13 @@ export default {
     },
     // 文件上传成功
     uploadFile(res, file, fileList){
-      console.log(111, res, file, fileList)
       const key = (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999)   
       let list = []; 
       fileList.map(item => {
         let datas = item.response ? item.response.data : {}
         let fileKey = datas.id || item.fileKey
-        let url = datas.fileUrl || '/cim6d-file-storage-dev/noToken/file/commonFile/download/' + item.fileKey
-        console.log(222, item, fileKey, url)
+        let url = datas.fileUrl || this.downLoadAction + item.fileKey
+        // console.log(222, item, fileKey, url)
         list.push({
           ...item,
           url,
@@ -198,7 +202,6 @@ export default {
           name: datas.name || item.name
         })
       })
-      console.log(333, list)
       this.fileList = list;
     },
     // 图片上传
@@ -368,7 +371,7 @@ export default {
             fileKey: item.fileKey
           })
         })
-        console.log('watch', val, this.fileList, list)
+        // console.log('watch', val, this.fileList, list)
         this.$emit('input', list)
       }
     }

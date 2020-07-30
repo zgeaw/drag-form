@@ -172,6 +172,7 @@
         :min="widget.options.min"
         :is-edit="widget.options.isEdit"
         :action="widget.options.action"
+        :downLoadAction="widget.options.downLoadAction"
       >
       </fm-upload>
     </template>
@@ -193,6 +194,7 @@
         :min="widget.options.min"
         :is-edit="widget.options.isEdit"
         :action="widget.options.action"
+        :downLoadAction="widget.options.downLoadAction"
         isFile
       >
       </fm-upload>

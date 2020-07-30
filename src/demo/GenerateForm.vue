@@ -136,6 +136,7 @@ export default {
             "isQiniu": false,
             "min": 0,
             "action": "/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form",
+            "downLoadAction": "/cim6d-file-storage-dev/noToken/file/commonFile/download/",
             "hidden": false,
             "halfLine": false,
             "remoteFunc": "func_1596109246000_10750"
@@ -167,6 +168,7 @@ export default {
             "multiple": false,
             "isQiniu": false,
             "action": "/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form",
+            "downLoadAction": "/cim6d-file-storage-dev/noToken/file/commonFile/download/",
             "hidden": false,
             "halfLine": false,
             "remoteFunc": "func_1596110413000_54948"
