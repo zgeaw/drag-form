@@ -86,7 +86,7 @@
             </el-header> -->
             <el-main class="config-content">
               <!-- <form-config :data="widgetForm.config"></form-config> -->
-              <widget-config v-show="configTab=='widget'" :data="widgetFormSelect"></widget-config>
+              <widget-config v-show="configTab=='widget'" :data="widgetFormSelect" :action="action" :downLoadAction="downLoadAction"></widget-config>
             </el-main>
           </el-container>
           
@@ -219,6 +219,16 @@ export default {
     layoutFields: {
       type: Array,
       default: () => []
+    },
+    // 提交API
+    action: {
+      type: String,
+      default: ''
+    },
+    // 下载地址
+    downLoadAction: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -282,6 +292,7 @@ export default {
     }
   },
   mounted () {
+    console.log(222, this)
     this._loadComponents()
   },
   methods: {

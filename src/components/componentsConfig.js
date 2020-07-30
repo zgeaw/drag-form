@@ -338,7 +338,8 @@ export const basicComponents = [
       multiple: false,
       isQiniu: false,
       min: 0,
-      action: '/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form',      
+      action: '',   
+      downLoadAction: '',   
       hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }
@@ -363,7 +364,8 @@ export const basicComponents = [
       multiple: false,
       isQiniu: false,
       //min: 0,
-      action: '/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form',      
+      action: '',  
+      downLoadAction: '',       
       hidden: false, // 是否隐藏
       halfLine: false // 是否整行显示
     }

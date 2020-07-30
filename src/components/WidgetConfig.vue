@@ -251,7 +251,7 @@
         </template>
         <template v-else>
           <el-form-item :label="$t('fm.config.widget.imageAction')" :required="true">
-            <el-input v-model="data.options.action"></el-input>
+            <el-input :value="data.options.action" disabled></el-input>
           </el-form-item>
         </template>
       </template>     
@@ -263,7 +263,7 @@
         </el-form-item>
         <template>
           <el-form-item :label="$t('fm.config.widget.action')" :required="true">
-            <el-input v-model="data.options.action"></el-input>
+            <el-input :value="data.options.action" disabled></el-input>
           </el-form-item>
         </template>
       </template>
@@ -361,7 +361,7 @@ export default {
   components: {
     Draggable
   },
-  props: ['data'],
+  props: ['data', 'action', 'downLoadAction'],
   data () {
     return {
       validator: {
@@ -376,12 +376,22 @@ export default {
   computed: {
     show () {
       if (this.data && Object.keys(this.data).length > 0) {
+        this.changeAction()
         return true
       }
       return false
     }
   },
+  mounted(){
+  },
   methods: {
+    // 动态改变上传地址
+    changeAction(){
+      if(this.data.type === 'imgupload' || this.data.type === 'fileupload'){
+        this.data.options.action = this.action
+        this.data.options.downLoadAction = this.downLoadAction
+      }
+    },
     handleOptionsRemove (index) {
       if (this.data.type === 'grid') {
         this.data.columns.splice(index, 1)

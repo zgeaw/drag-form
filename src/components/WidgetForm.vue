@@ -37,6 +37,7 @@
                             :element="el" 
                             :select.sync="selectWidget" 
                             :index="i" 
+                            :action="action"
                             :data="col">
                           </widget-form-item>
                         </transition-group>
@@ -54,7 +55,7 @@
                 </el-row>
             </template>
             <template v-else>
-              <widget-form-item v-if="element && element.key"  :key="element.key" :element="element" :select.sync="selectWidget" :index="index" :data="data"></widget-form-item>
+              <widget-form-item v-if="element && element.key"  :key="element.key" :element="element" :select.sync="selectWidget" :index="index" :data="data" :action="action"></widget-form-item>
             </template>
           </template>
         </transition-group>
@@ -72,7 +73,7 @@ export default {
     Draggable,
     WidgetFormItem
   },
-  props: ['data', 'select'],
+  props: ['data', 'select', 'action', 'downLoadAction'],
   data () {
     return {
       selectWidget: this.select

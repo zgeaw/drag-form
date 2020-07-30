@@ -233,7 +233,7 @@
 <script>
 import FmUpload from './Upload'
 export default {
-  props: ['element', 'select', 'index', 'data'],
+  props: ['element', 'select', 'index', 'data', 'action'],
   components: {
     FmUpload,
   },

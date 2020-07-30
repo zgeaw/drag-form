@@ -1,6 +1,18 @@
 <template>
   <div>
-    <fm-generate-form ref="generateFormRef" :data="jsonData" />
+    <div class="form-making">
+      <fm-making-form
+        ref="dragForm"
+        :data="jsonList"
+        preview
+        generate-code
+        generate-json
+        clearable
+        downLoadAction="/cim6d-file-storage-dev/noToken/file/commonFile/download/"
+        action="/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form"
+      />
+    </div>
+    <fm-generate-form ref="generateFormRef" :data="jsonData" downLoadAction="/cim6d-file-storage-dev/noToken/file/commonFile/download/" action="/cim6d-file-storage-dev/noToken/file/commonFile/visitor/upload/drag-form" />
     <div style="text-align: center;">
       <el-button @click="init">初始化</el-button>
       <el-button @click="reset">复位</el-button>
@@ -12,6 +24,7 @@
 export default {
   data(){
     return {
+      jsonList: [],
       jsonData: {
         "list": [
         {
@@ -191,3 +204,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.form-making{
+  height: 500px;
+}
+</style>

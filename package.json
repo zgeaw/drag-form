@@ -1,7 +1,7 @@
 {
   "name": "drag-form",
   "description": "A designer and generator of form base on Vue.js, make form development simple and efficient.",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "author": "32237384@qq.com",
   "license": "MIT",
   "keywords": [
