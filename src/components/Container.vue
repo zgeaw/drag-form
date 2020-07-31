@@ -292,7 +292,6 @@ export default {
     }
   },
   mounted () {
-    console.log(222, this)
     this._loadComponents()
   },
   methods: {
@@ -372,7 +371,7 @@ export default {
       this.jsonTemplate = jsonTemplate
       // console.log(JSON.stringify(jsonTemplate))
       this.$nextTick(() => {
-
+        console.log(222, ace)
         const editor = ace.edit('jsoneditor')
         editor.session.setMode("ace/mode/json")
 
